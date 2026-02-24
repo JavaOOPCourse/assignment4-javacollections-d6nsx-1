@@ -1,30 +1,36 @@
 package service;
 
 import model.Student;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 public class StudentService {
 
     private ArrayList<Student> students = new ArrayList<>();
 
-    public void initializeStudents() {
-        // TODO: Add at least 5 students
+    public void init() {
+        students.add(new Student(1, "Anna", 3.8));
+        students.add(new Student(2, "Bob", 1.9));
+        students.add(new Student(3, "Chris", 3.2));
+        students.add(new Student(4, "Diana", 2.5));
+        students.add(new Student(5, "Eric", 1.5));
+
+        students.removeIf(s -> s.getGpa() < 2.0);
+        students.add(2, new Student(99, "New Student", 3.0));
     }
 
-    public void removeLowGPA() {
-        // TODO: Remove students with GPA < 2.0
-    }
+    public void showStudents() {
+        Iterator<Student> it = students.iterator();
 
-    public void findHighestGPA() {
-        // TODO: Find and print student with highest GPA
-    }
+        Student best = students.get(0);
 
-    public void insertAtIndex() {
-        // TODO: Insert new student at index 2
-    }
+        while (it.hasNext()) {
+            Student s = it.next();
+            System.out.println(s);
 
-    public void printStudents() {
-        // TODO: Print using Iterator
+            if (s.getGpa() > best.getGpa())
+                best = s;
+        }
+
+        System.out.println("Highest GPA: " + best);
     }
 }

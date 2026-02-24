@@ -1,29 +1,31 @@
 package service;
 
-import java.util.ArrayDeque;
-import java.util.Iterator;
+import java.util.*;
 
 public class ActionHistoryService {
 
     private ArrayDeque<String> actions = new ArrayDeque<>();
 
-    public void initializeActions() {
-        // TODO: Add 4 actions
+    public void init() {
+        actions.add("Submitted Assignment");
+        actions.add("Dropped Course");
+        actions.add("Registered Course");
+        actions.add("Updated Profile");
+
+        actions.removeLast();
+        actions.add("Requested Transcript");
     }
 
-    public void undoLastAction() {
-        // TODO: Remove last action
+    public void show() {
+        System.out.println("First: " + actions.peekFirst());
+        System.out.println("Last: " + actions.peekLast());
+
+        for (String a : actions)
+            System.out.println(a);
     }
 
-    public void addRequestedTranscript() {
-        // TODO: Add "Requested Transcript"
-    }
-
-    public void showFirstAndLast() {
-        // TODO: Print first and last action
-    }
-
-    public void printHistory() {
-        // TODO: Iterate through history
+    public void undo() {
+        if (!actions.isEmpty())
+            System.out.println("Removed: " + actions.removeLast());
     }
 }

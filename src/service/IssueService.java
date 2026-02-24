@@ -1,30 +1,32 @@
 package service;
 
 import model.Issue;
-import java.util.PriorityQueue;
-import java.util.Iterator;
+import java.util.*;
 
 public class IssueService {
 
     private PriorityQueue<Issue> issues = new PriorityQueue<>();
 
-    public void initializeIssues() {
-        // TODO: Add at least 5 issues
+    public void init() {
+        issues.add(new Issue("Lost ID", 4));
+        issues.add(new Issue("Scholarship", 1));
+        issues.add(new Issue("Exam conflict", 2));
+        issues.add(new Issue("Registration error", 3));
+        issues.add(new Issue("Payment issue", 5));
+
+        issues.poll();
+        issues.poll();
     }
 
-    public void showMostUrgent() {
-        // TODO: Show most urgent issue
+    public void show() {
+        if (!issues.isEmpty())
+            System.out.println("Most urgent: " + issues.peek());
+
+        for (Issue i : issues)
+            System.out.println(i);
     }
 
-    public void resolveIssues() {
-        // TODO: Remove 2 issues
-    }
-
-    public void printRemainingIssues() {
-        // TODO: Print using iterator
-    }
-
-    public void addNewIssue(String description, int urgency) {
-        // TODO: Add new issue
+    public void add(String desc, int level) {
+        issues.add(new Issue(desc, level));
     }
 }

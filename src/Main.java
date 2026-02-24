@@ -10,50 +10,42 @@ public class Main {
         IssueService issueService = new IssueService();
         ActionHistoryService actionService = new ActionHistoryService();
 
-        Scanner scanner = new Scanner(System.in);
+        studentService.init();
+        appointmentService.init();
+        issueService.init();
+        actionService.init();
+
+        Scanner sc = new Scanner(System.in);
+
         int choice;
 
         do {
-            System.out.println("===== 🎓 Smart University Service System =====");
-            System.out.println("1. Show Students");
-            System.out.println("2. Show Appointments");
-            System.out.println("3. Show Emergency Issues");
-            System.out.println("4. Show Action History");
-            System.out.println("5. Add New Issue");
-            System.out.println("6. Undo Action");
-            System.out.println("7. Exit");
-            System.out.print("Choose option: ");
+            System.out.println("\n1 Students");
+            System.out.println("2 Appointments");
+            System.out.println("3 Issues");
+            System.out.println("4 Actions");
+            System.out.println("5 Add Issue");
+            System.out.println("6 Undo Action");
+            System.out.println("0 Exit");
 
-            choice = scanner.nextInt();
+            choice = sc.nextInt();
+            sc.nextLine();
 
             switch (choice) {
-                case 1:
-                    // TODO
-                    break;
-                case 2:
-                    // TODO
-                    break;
-                case 3:
-                    // TODO
-                    break;
-                case 4:
-                    // TODO
-                    break;
-                case 5:
-                    // TODO
-                    break;
-                case 6:
-                    // TODO
-                    break;
-                case 7:
-                    System.out.println("Exiting... 👋");
-                    break;
-                default:
-                    System.out.println("Invalid option ❌");
+                case 1 -> studentService.showStudents();
+                case 2 -> appointmentService.show();
+                case 3 -> issueService.show();
+                case 4 -> actionService.show();
+                case 5 -> {
+                    System.out.print("Description: ");
+                    String d = sc.nextLine();
+                    System.out.print("Urgency: ");
+                    int u = sc.nextInt();
+                    issueService.add(d, u);
+                }
+                case 6 -> actionService.undo();
             }
 
-        } while (choice != 7);
-
-        scanner.close();
+        } while (choice != 0);
     }
 }

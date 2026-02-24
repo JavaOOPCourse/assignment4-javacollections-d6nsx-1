@@ -1,26 +1,25 @@
 package service;
 
-import java.util.LinkedList;
-import java.util.Iterator;
+import java.util.*;
 
 public class AppointmentService {
 
     private LinkedList<String> appointments = new LinkedList<>();
 
-    public void initializeAppointments() {
-        // TODO: Add 3 normal appointments
-        // TODO: Add 1 urgent appointment at the beginning
+    public void init() {
+        appointments.add("Consultation A");
+        appointments.add("Consultation B");
+        appointments.add("Consultation C");
+
+        appointments.addFirst("URGENT Consultation");
+        appointments.removeLast();
     }
 
-    public void cancelLast() {
-        // TODO: Remove last appointment
-    }
+    public void show() {
+        System.out.println("First: " + appointments.getFirst());
+        System.out.println("Last: " + appointments.getLast());
 
-    public void showFirstAndLast() {
-        // TODO: Print first and last appointment
-    }
-
-    public void printAppointments() {
-        // TODO: Traverse using Iterator
+        for (String a : appointments)
+            System.out.println(a);
     }
 }
